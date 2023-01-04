@@ -21,7 +21,7 @@ import { users, posts } from "./data/index.js";
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config();
+dotenv.config({path:'config.env'});
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -58,7 +58,7 @@ app.use("/posts", postRoutes);
 mongoose.set('strictQuery', true);
 const PORT = process.env.PORT || 6001;
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
